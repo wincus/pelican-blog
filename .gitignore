@@ -3,6 +3,7 @@ include
 lib
 local
 *.pyc
+*.pid
 
 cache/
 output/
