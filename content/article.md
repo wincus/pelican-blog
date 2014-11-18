@@ -1,10 +1,10 @@
-Title: My super title
-Date: 2010-12-03 10:20
-Modified: 2010-12-05 19:30
-Category: Python
-Tags: pelican, publishing
-Slug: my-super-post
-Authors: Alexis Metaireau, Conan Doyle
-Summary: Short version for index and feeds
+Title: First Article
+Date: 2014-11-18
+Category: misc
+Tags: pelican, publishing, testing, vim, git
+Authors: Wincus
+Summary: My First Article
 
-This is the content of my super blog post.
+Writing articles in vim
+publish then with git
+it's hard not to do it
