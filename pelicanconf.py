@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 
 AUTHOR = u'wincus'
 SITENAME = u'Wincus Blog'
-THEME='/home/jon/25-PersonalRepos/pelican-themes/pelican-sober'
+THEME='themes/pelican-sober'
 DISPLAY_PAGES_ON_MENU = True
 PELICAN_SOBER_STICKY_SIDEBAR = True
 
@@ -24,7 +24,8 @@ LINKS = (('Pelican', 'http://getpelican.com/'),)
 
 # Social widget
 SOCIAL = (('@jonwincus', 'https://twitter.com/jonwincus'),
-          ('@wincus', 'https://github.com/wincus'),)
+          ('wincus', 'https://github.com/wincus'),
+          ('jonwincus', 'https://ar.linkedin.com/in/jonwincus'),)
 
 DEFAULT_PAGINATION = 10
 
