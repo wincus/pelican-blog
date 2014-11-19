@@ -31,13 +31,6 @@ clean:
 regenerate:
 	$(PELICAN) -r $(INPUTDIR) -o $(OUTPUTDIR) -s $(CONFFILE) $(PELICANOPTS)
 
-serve:
-ifdef PORT
-	cd $(OUTPUTDIR) && $(PY) -m pelican.server $(PORT)
-else
-	cd $(OUTPUTDIR) && $(PY) -m pelican.server
-endif
-
 devserver:
 ifdef PORT
 	$(BASEDIR)/develop_server.sh restart $(PORT)
@@ -57,4 +50,4 @@ github: publish
 	ghp-import -m "Generate Pelican site" $(OUTPUTDIR)
 	git push git@github.com:wincus/wincus.github.io.git gh-pages:master
 
-.PHONY: html help clean regenerate serve devserver publish github
+.PHONY: install html clean regenerate devserver stopserver publish github

@@ -6,5 +6,6 @@ Tags: pelican
 Authors: wincus
 Summary: This is me
 
-I'm a guitar player, GNU/Linux advocate, self taught infrastructure developer,
-networking university professor and electronic Engineer.
+I'm a guitar player, music lover, GNU/Linux advocate, self taught infrastructure developer, networking university professor and electronic Engineer.
+
+Thanks for passing by!
