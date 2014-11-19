@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 AUTHOR = u'wincus'
-SITENAME = u'Wincus Blog'
+SITENAME = u'Wincus Random Notes'
 THEME='themes/pelican-sober'
 DISPLAY_PAGES_ON_MENU = True
 PELICAN_SOBER_STICKY_SIDEBAR = True
@@ -11,7 +11,7 @@ PELICAN_SOBER_STICKY_SIDEBAR = True
 PATH = 'content'
 TIMEZONE = 'America/Mendoza'
 DEFAULT_LANG = u'en'
-SITEURL = 'http://wincus.github.io'
+SITEURL = 'http://blog.wincus.com.ar'
 
 # Feed generation is usually not desired when developing
 #FEED_ALL_ATOM = None
