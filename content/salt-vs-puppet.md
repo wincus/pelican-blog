@@ -3,6 +3,7 @@ Date: 2014-11-18
 Category: devops
 Tags: salt, puppet, automation
 Authors: wincus
+Status: hidden
 Summary: This article includes only my personal opinion, as usual, YMMV
 
 Having worked with [puppet](http://puppetlabs.com) for a long time, I run into
