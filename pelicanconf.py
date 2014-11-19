@@ -12,15 +12,16 @@ PATH = 'content'
 TIMEZONE = 'America/Mendoza'
 DEFAULT_LANG = u'en'
 SITEURL = 'http://wincus.github.io'
+
 # Feed generation is usually not desired when developing
-FEED_ALL_ATOM = None
-CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
-AUTHOR_FEED_ATOM = None
-AUTHOR_FEED_RSS = None
+#FEED_ALL_ATOM = None
+#CATEGORY_FEED_ATOM = None
+#TRANSLATION_FEED_ATOM = None
+#AUTHOR_FEED_ATOM = None
+#AUTHOR_FEED_RSS = None
 
 # Blogroll
-LINKS = (('Pelican', 'http://getpelican.com/'),)
+# LINKS = (('Pelican', 'http://getpelican.com/'),)
 
 # Social widget
 SOCIAL = (('@jonwincus', 'https://twitter.com/jonwincus'),
