@@ -1,4 +1,4 @@
-Title: Salty Puppet
+Title: Salted Puppet
 Date: 2014-11-18
 Category: devops
 Tags: salt, puppet, automation
@@ -56,5 +56,7 @@ simple remote execution tool.
  * salt state ecosystem seems to be richer
  * targeting at salt minions is incredibly flexible and powerful (batching
    execution for example)
+
+ * salt-ssh
 
 Thanks for passing by!
