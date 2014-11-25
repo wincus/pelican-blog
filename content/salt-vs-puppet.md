@@ -3,23 +3,56 @@ Date: 2014-11-18
 Category: devops
 Tags: salt, puppet, automation
 Authors: wincus
-Status: hidden
-Summary: This article includes only my personal opinion, as usual, YMMV
+Summary: Just another ultra-biased salt vs puppet article.
 
 Having worked with [puppet](http://puppetlabs.com) for a long time, I run into
-[salt](http://saltstack.com). I was only looking for a remote execution tool,
-cause the natural choice under puppet environments,
-[mcollective](http://puppetlabs.com/mcollecive), seemed to complicate to
-install/configure/use/whatsoever.
+[salt](http://saltstack.com) looking for a remote execution tool, as the 
+natural choice under puppet environments, [mcollective](http://puppetlabs.com
+/mcollective), seemed to complicate to install/configure/use/whatsoever.
 
 So I started digging salty waters, to find that salt was much more than a
 simple remote execution tool.
 
- * salt is written in python, if you like python better than ruby, this is a
-   major advantage.
- * salt can enforce the state of a target system, just like puppet
- * states are written in yaml, easier to read and easier to write
- * all salt states are rendered, which means that you can do things like:
+Targeting
+---------
+One of the challenges about remote execution is targeting. Of course you want
+parallel remote execution, but this feature is worthless unless you have smart 
+targeting subsystem.
+
+How smart is Salt targeting? [Pretty much!](http://docs.saltstack.com/en/late
+st/topics/targeting/)
+
+For example, from the documentation:
+
+``
+salt -G 'os:RedHat' --batch-size 25% apache.signal restart
+``
+
+This will restart apache on all minions running RedHat, but wait, not all at
+the same time, lets trigger 25% first, an then roll the window until you get
+to 100%. 
+
+State Enforcing
+---------------
+Salt can also enforce the state of a target system, just like puppet. 
+
+[State](http://docs.saltstack.com/en/latest/topics/tutorials/starting_states.
+html) 
+files are written in [yaml](http://www.yaml.org/) honoring Salt's foundation 
+principles: simplicity, simplicity, simplicity.
+
+This yaml is only data representation of the states. As data, in reality we are 
+just talking about dictionaries, lists, strings and numbers. If you are coming 
+from puppet, you will need some time to realize that in Salts world it is you 
+who decide how complex things are. The other big difference, in my opinion, is
+that state files in Salt are rendered, and better, you are free to choose the
+render engine, as long as delivers state data to Salt. 
+
+Unless told otherwise, state files are first rendered using the default 
+renderer, [Jinja](http://jinja.pocoo.org/) before getting to the YAML parser.
+
+This allows great flexibility, as shown in this example taken from the
+documentation:
 
 ```
 {% for mnt in salt['cmd.run']('ls /dev/data/moose*').split() %}
@@ -36,27 +69,61 @@ simple remote execution tool.
       - group: mfs
 {% endfor %}
 ```
- * you can even choose the render subsystem you like
- * custom modules are extremely easy to write
- * documentation is well organized and easy to follow
- * The company behind it, SaltStack, is not offering a different product for
-   community and enterprise, as puppet. Their business model is based on
-   support services.
- * at this very moment, salt github activity doubles puppet's (42k vs 20k commits)
- * salts community seems to be friendlier than puppet
- * salts momentum is much bigger, according to [google
-   trends](http://www.google.com/trends/explore#q=saltstack%2C%20puppetlabs&cmpt=q)
- * salt has native cloud controller included, supporting cloud big players like
-   amazon, google, docker, etc
- * salt has a native event & react subsytem, that allows you to react to events
-   if needed
- * it can fetch states directly from your git repo, non error-prune intermediaries
- * salt can run in multi-master mode
- * salt can run minionless, using salt-ssh
- * salt state ecosystem seems to be richer
- * targeting at salt minions is incredibly flexible and powerful (batching
-   execution for example)
+You have a pretty bast [module](http://docs.saltstack.com/en/latest/ref/modul
+es/all/index.html#all-salt-modules) ecosystem to work with. And if that is not
+enough you can write your own. Yes, writing custom models is really simple.
 
- * salt-ssh
+Cloud friendly
+--------------
+Most management and configuration tools out there were born before the Cloud 
+existed or be so popular, so developers didn't pay much attention to it until 
+it was to late.
 
-Thanks for passing by!
+Salt, on the other hand, was created with [cloud](http://docs.saltstack.com/en/la
+test/topics/cloud/) in mind from the beginning. This means, in my opinion, two 
+important things. First you get a single interface for every cloud provider 
+out there (Salt supports big cloud players like EC2, DigitalOcean, Azure, GCE, 
+LXC, Docker, OpenStack, SoftLayer, and others). The second big advantage is
+that you can manage your multi-provider instances from your state files:
+
+```
+my-instance-name:
+  cloud.present:
+    - provider: my-ec2-config
+    - image: ami-1624987f
+    - size: 't1.micro'
+    - ssh_username: ec2-user
+    - securitygroup: default
+    - delvol_on_destroy: True
+```
+
+Reactor
+-------
+State management is great, but sometimes it just won't fit in real world 
+scenarios. Here is where the Reactor systems comes to the rescue. It's basic 
+workflow is pretty simple. There is an event bus, and every event fired into 
+the bus has a tag and a data structure, a dict with information about the 
+event. In order to react to this events, you can write state files and map 
+them with the events that need special attention.
+
+For example, a typical use case is when you fire up a new production cloud 
+web instance. This will fire up a cloud event into the event bus with 
+information about this new instance. Then should be straightforward to write 
+some sls files in order to configure instance backup and monitoring.
+
+Minionless nodes
+----------------
+Oh Yeah, Salt can control your nodes without the need to install a client
+there, just by having [ssh](http://docs.saltstack.com/en/latest/topics/ssh/)
+access to it. Of course it won't scale well if you have many nodes, and will 
+be slower than the minionful counterpart, but its up to you. At the end, you 
+get to decide how complex your setup will be, remember?
+
+Documentation
+-------------
+Well organized and easy to follow, [documentation](http://docs.saltstack.com/
+en/latest/) is another strong thing about Salt. Transaltions are quite slow 
+to arrive, though. If you are considering donating some time to the project, 
+helping with [translations](https://www.transifex.com/projects/p/salt/) are a 
+always a good option.
+

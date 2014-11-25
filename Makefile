@@ -33,9 +33,9 @@ regenerate:
 
 devserver:
 ifdef PORT
-	$(BASEDIR)/develop_server.sh restart $(PORT)
+	$(BASEDIR)/develop_server.sh restart $(PORT) > /dev/null
 else
-	$(BASEDIR)/develop_server.sh restart
+	$(BASEDIR)/develop_server.sh restart > /dev/null
 endif
 
 stopserver:
