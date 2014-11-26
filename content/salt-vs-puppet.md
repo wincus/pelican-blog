@@ -1,7 +1,7 @@
 Title: Salted Puppet
 Date: 2014-11-18
 Category: devops
-Tags: salt, puppet, automation
+Tags: salt, puppet, automation, devops
 Authors: wincus
 Summary: Just another ultra-biased salt vs puppet article.
 
@@ -17,13 +17,13 @@ Targeting
 ---------
 One of the challenges about remote execution is targeting. Of course you want
 parallel remote execution in order to break the linear relation between
-execution time and number of targets nodes, but this feature is worthless
+execution time and number of target nodes, but this feature is worthless
 unless you have smart targeting subsystem.
 
 So, how smart is Salt targeting? [Pretty much!](http://docs.saltstack.com/en/late
 st/topics/targeting/)
 
-For example, from the documentation:
+For example, consider this example taken from the documentation:
 
 ``
 salt -G 'os:RedHat' --batch-size 25% apache.signal restart
@@ -38,9 +38,8 @@ State Enforcing
 Salt can also enforce the state of a target system, just like puppet. 
 
 [State](http://docs.saltstack.com/en/latest/topics/tutorials/starting_states.
-html) 
-files are written in [yaml](http://www.yaml.org/) honoring Salt's foundation 
-principles: simplicity, simplicity, simplicity.
+html) files are written in [yaml](http://www.yaml.org/) honoring Salt's 
+foundation principles: simplicity, simplicity, simplicity.
 
 This yaml is only data representation of the states. As data, in reality we are 
 just talking about dictionaries, lists, strings and numbers. If you are coming 
@@ -72,6 +71,12 @@ documentation:
 You have a pretty bast [module](http://docs.saltstack.com/en/latest/ref/modul
 es/all/index.html#all-salt-modules) ecosystem to work with. And if that is not
 enough you can write your own. Yes, writing custom models is really simple.
+
+Another cool feature I like about Salt is how well plays with [git](http://do
+cs.saltstack.com/en/latest/topics/tutorials/gitfs.html). Salt can fetch your 
+state files (and pillar data) directly from one or more Git repos, mapping 
+automatically environment branch/tags identifiers. This allows you to trigger
+the magic on a single git commit.
 
 Cloud friendly
 --------------
@@ -128,4 +133,3 @@ en/latest/) is another strong thing about Salt. Transaltions are quite slow
 to arrive, though. If you are considering donating some time to the project, 
 helping with [translations](https://www.transifex.com/projects/p/salt/) are a 
 always a good option.
-
