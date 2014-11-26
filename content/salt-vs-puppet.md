@@ -8,7 +8,7 @@ Summary: Just another ultra-biased salt vs puppet article.
 Having worked with [puppet](http://puppetlabs.com) for a long time, I run into
 [salt](http://saltstack.com) looking for a remote execution tool, as the 
 natural choice under puppet environments, [mcollective](http://puppetlabs.com
-/mcollective), seemed to complicate to install/configure/use/whatsoever.
+/mcollective) seemed to complicate to install/configure/use/whatsoever.
 
 So I started digging salty waters, to find that salt was much more than a
 simple remote execution tool.
@@ -16,10 +16,11 @@ simple remote execution tool.
 Targeting
 ---------
 One of the challenges about remote execution is targeting. Of course you want
-parallel remote execution, but this feature is worthless unless you have smart 
-targeting subsystem.
+parallel remote execution in order to break the linear relation between
+execution time and number of targets nodes, but this feature is worthless
+unless you have smart targeting subsystem.
 
-How smart is Salt targeting? [Pretty much!](http://docs.saltstack.com/en/late
+So, how smart is Salt targeting? [Pretty much!](http://docs.saltstack.com/en/late
 st/topics/targeting/)
 
 For example, from the documentation:
@@ -45,11 +46,10 @@ This yaml is only data representation of the states. As data, in reality we are
 just talking about dictionaries, lists, strings and numbers. If you are coming 
 from puppet, you will need some time to realize that in Salts world it is you 
 who decide how complex things are. The other big difference, in my opinion, is
-that state files in Salt are rendered, and better, you are free to choose the
-render engine, as long as delivers state data to Salt. 
-
-Unless told otherwise, state files are first rendered using the default 
-renderer, [Jinja](http://jinja.pocoo.org/) before getting to the YAML parser.
+that state files in Salt are rendered, and gets even better, you are free to 
+choose the render engine, as long as delivers state data to Salt.  Unless told
+otherwise, state files are first rendered using the default renderer,
+[Jinja](http://jinja.pocoo.org/) before getting to the YAML parser.
 
 This allows great flexibility, as shown in this example taken from the
 documentation:
@@ -76,7 +76,7 @@ enough you can write your own. Yes, writing custom models is really simple.
 Cloud friendly
 --------------
 Most management and configuration tools out there were born before the Cloud 
-existed or be so popular, so developers didn't pay much attention to it until 
+existed or was so popular, so developers didn't pay much attention to it until 
 it was to late.
 
 Salt, on the other hand, was created with [cloud](http://docs.saltstack.com/en/la
@@ -107,9 +107,11 @@ event. In order to react to this events, you can write state files and map
 them with the events that need special attention.
 
 For example, a typical use case is when you fire up a new production cloud 
-web instance. This will fire up a cloud event into the event bus with 
-information about this new instance. Then should be straightforward to write 
-some sls files in order to configure instance backup and monitoring.
+web instance. This will write a cloud event into the event bus with 
+information about this new instance. What should happen when a new instance
+gets created and configured? Probably you will want to include it in the backup
+rutine, and you definitly will want to monitor it. No problem, just write the
+proper sls files and map the event with the state file. Good enough?
 
 Minionless nodes
 ----------------
