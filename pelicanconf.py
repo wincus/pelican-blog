@@ -34,3 +34,4 @@ STATIC_PATHS = ['extra/CNAME']
 EXTRA_PATH_METADATA = {'extra/CNAME': {'path': 'CNAME'},}
 
 GOOGLE_ANALYTICS = 'UA-57105532-1'
+DISQUS_SITENAME = 'wincusblog'
