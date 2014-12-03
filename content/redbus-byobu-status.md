@@ -16,8 +16,8 @@ which is uncomfortable, or walk, which is worst.
 
 The Solution
 ------------
-It's Really Simple. I'm always working in a command line terminal, so I wrote 
-[this](https://github.com/wincus/redbus-byobu-status) little web-scrapping 
-script that shows my credit status on byobu's status line. 
+It's Really Simple. I spend all my working hours in a command line terminal, 
+so I wrote  [this](https://github.com/wincus/redbus-byobu-status) little 
+web-scrapping script that shows my credit status on byobu's status line. 
 
 Thanks for passing by!
