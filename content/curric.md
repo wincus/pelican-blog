@@ -4,7 +4,6 @@ Category: misc
 Tags: cv, resume, latex, travis, github
 Authors: Wincus
 Summary: How travis kindly builds my resume
-Status: draft
 
 I'm a big fan of [Donald Knuth](http://en.wikipedia.org/wiki/Donald_Knuth) and
 naturally I am fan of one of his latest creation, [Tex](http://tug.org/). 
