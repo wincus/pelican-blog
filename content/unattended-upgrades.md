@@ -4,6 +4,6 @@ Category: devops
 Tags: debian, ubuntu, unattended-upgrades, 
 Authors: Wincus
 Summary: Upgrades don't have to be a pain
-Enabled: false
+Status: draft
 
 Thanks for passing by!

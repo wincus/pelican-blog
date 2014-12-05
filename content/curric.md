@@ -4,6 +4,7 @@ Category: misc
 Tags: cv, resume, latex, travis, github
 Authors: Wincus
 Summary: How travis kindly builds my resume
+Status: draft
 
 I'm a big fan of [Donald Knuth](http://en.wikipedia.org/wiki/Donald_Knuth) and
 naturally I am fan of one of his latest creation, [Tex](http://tug.org/). So 
@@ -20,7 +21,7 @@ You can write your document with any text editor,
 like [vim](http://vim.org), and then compile it to 
 generate the output file, in any format you like.
 
-In order to be able to compile my CV you need this packages installed:
+In order to be able to compile my CV I need this packages installed:
 
  * texlive
  * texlive-fonts-recommended
@@ -28,8 +29,9 @@ In order to be able to compile my CV you need this packages installed:
  * texlive-latex-base texlive-latex-extra 
  * texlive-latex-recommended
 
-Almost 512MB needs to be downloaded from the Internet in order to get them installed. 
-Just to generate my Resume in pdf format seemed to much.
+Almost 512MB needs to be downloaded from the Internet in order to get them 
+installed. Just to generate my Resume in pdf format seemed like to much. I even
+thought about switching to LibreOffice ...
 
 The solution
 ------------
