@@ -26,18 +26,17 @@ some implications. Some upgrades require human intervention, whenever a manual
 merge in the configuration file is needed, for example. Some upgrades require 
 the server to reboot itself, in order to apply the changes. How to deal with it?
 
-
 The Solution
 ------------
 Here is an simplified puppet manifest that will:
 
- - install the unattended-upgrades package (only debian based distros, I think)
+ - install the unattended-upgrades package (only debian based distros)
  - expose 3 hiera variables:
      - auto-reboot: the server will reboot itself if needed
      - auto-upgrade: the server will upgrade itself if needed
      - auto-update: the server will apt-get update daily
 
- - configure the package using templates
+ - configure the package using hiera based templates 
 
 ```
 class base_packages::unattendedupgrades {
@@ -75,8 +74,7 @@ class base_packages::unattendedupgrades {
 
 ```
 
-
-The templates are pretty straight forward. 
+The templates are pretty straight forward:
 
 20auto-upgrades:
 ```
@@ -102,16 +100,19 @@ Unattended-Upgrade::Automatic-Reboot <% if @auto_reboot %> "true" <% else %> "fa
 ```
 
 In other words, only upgrades from official repos, from puppet repo and from
-salt repo are allowed. Set your email address is important, to keep you informed
-about whats going on. If some package require a manual merge configuration file 
-intervention, you will be noticed by email, for you to deal with it.
+salt repo are allowed. Setting your email address is important to keep you 
+informed about whats going on. If some package require a manual merge 
+configuration file intervention, you will be noticed by email, for you to 
+deal with it.
 
 Some Hiera Magic
 ----------------
 
 Now I don't want production servers to reboot automatically, cause I rather do
-it myself when I'm sure I won't interrupt some critical mission process. Devel
-and Testing servers are free to do whatever they like. In hieras terms:
+it myself when I'm sure I won't interrupt some critical mission process's. 
+Devel and Testing servers are free to do whatever they like. 
+
+So, in hieras terms:
 
 production.yaml:
 
@@ -138,18 +139,18 @@ auto_update: true
 
 ```
 
+Here comes some Nagios Magic
+----------------------------
+OK, production servers will send an email requesting a manual reboot within a
+ proper time window. This works unless you get lots of emails, like me. 
+The monitoring server is probably a better way to handle this information. 
 
-Some Nagios Magic
------------------
+As we use nagios with nrpe, this single liner will do the trick:
 
+```
+command[check_reboot_required]=/usr/lib/nagios/plugins/negate --ok=WARNING --warning=OK --critical=OK -s /usr/lib/nagios/plugins/check_file_age -c 0 -w 0 -W 0 -f /var/run/reboot-required
+```
 
-
-
-
-
-
-
-Conclusions
------------
+As usual, YMMV, 
 
 Thanks for passing by!
