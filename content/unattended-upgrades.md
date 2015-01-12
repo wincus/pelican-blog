@@ -1,10 +1,9 @@
 Title: Thoughts about upgrades automation
-Date: 2014-12-01
+Date: 2015-01-12
 Category: devops
 Tags: debian, ubuntu, unattended-upgrades, puppet
 Authors: Wincus
 Summary: Server automatic upgrades, oh my!
-Status: draft
 
 I must confess that I first thought that server upgrades automatization was 
 just crazy. Until one day I was feeling more confident about walking away my
